@@ -14,3 +14,16 @@ export async function getUsers() {
         return [];
     }
 }
+
+const doesInclude = (a, b) => {
+    if (!a || !b) return false;
+    return a.toUpperCase().includes(b.toUpperCase());
+}
+
+export const searchFilter = (users, searchValue) => {
+    return users.filter((user) => (
+        doesInclude(user.first_name, searchValue)
+        || doesInclude(user.last_name, searchValue)
+        || doesInclude(user.function, searchValue)
+    ));
+}
