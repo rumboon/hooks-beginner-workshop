@@ -1,18 +1,6 @@
 import React from 'react';
-import styled from 'styled-components';
-import { getEmployeeFunctions } from '../utils/Employees';
-
-const Root = styled.div`
-    display: flex;
-    justify-content: space-evenly;
-`;
-
-const Fieldset = styled.div`
-    display: flex;
-    align-items: center;
-    padding: 0;
-    margin: 0.25rem;
-`;
+import { getEmployeeFunctions } from '../utils/employees';
+import { Root, Fieldset } from '../styles/Filters';
 
 const Filters = ({onFilter, ...props}) => {
     const [employeeFunctions, setEmployeeFunctions] = React.useState([]);

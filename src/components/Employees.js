@@ -1,19 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import Employee from './Employee';
-import { getEmployees, searchFilter } from '../utils/Employees';
-
-const List = styled.ul`
-    list-style: none;
-    margin: 0;
-    padding: 0;
-`;
-
-const ListItem = styled.li`
-    margin: 0;
-    padding: 0;
-    background-color: ${props => props.isOdd ? 'AntiqueWhite' : 'CornSilk'};
-`;
+import { getEmployees, searchFilter } from '../utils/employees';
+import { List, ListItem } from '../styles/Employees';
 
 const Employees = ({ searchValue, filters }) => {
     const [employees, setEmployees] = React.useState([]);
