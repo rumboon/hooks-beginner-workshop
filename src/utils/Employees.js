@@ -1,13 +1,6 @@
-const credentials = btoa('srpwcqp2:ej7s62xt2mrtefkqrepm');
-
-// TODO local rest instance (maybe docker ?)
 export async function getEmployees() {
     try {
-        const response = await fetch('https://sheetdb.io/api/v1/smyv5xfvpjqeh', {
-            headers: {
-                'Authorization': 'Basic ' + credentials,
-            },
-        });
+        const response = await fetch('http://localhost:5000/api/employees');
 
         return await response.json();
     } catch (e) {
@@ -16,25 +9,11 @@ export async function getEmployees() {
     }
 }
 
-export async function getFunctions() {
+export async function getEmployeeFunctions() {
     try {
-        const response = await fetch('https://sheetdb.io/api/v1/smyv5xfvpjqeh', {
-            headers: {
-                'Authorization': 'Basic ' + credentials,
-            },
-        });
+        const response = await fetch('http://localhost:5000/api/functions');
 
-        const employees = await response.json();
-        
-        return employees.reduce((arr, employee) => {
-            if (!arr.includes(employee.function)) {
-                return [
-                    employee.function,
-                    ...arr
-                ];
-            }
-            return arr;
-        }, []);
+        return await response.json();
     } catch (e) {
         console.error(e);
         return [];

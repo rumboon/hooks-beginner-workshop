@@ -24,16 +24,7 @@ const Employees = ({ searchValue, filters }) => {
     }, []);
 
     React.useEffect(() => {
-        if (!searchValue && filters.length === 0) {
-            setFilteredEmployees(undefined);
-            return;
-        }
-
-        let filteredEmployees = employees;
-
-        if (filters.length > 0) {
-            filteredEmployees = filteredEmployees.filter(employee => filters.includes(employee.function));
-        }
+        let filteredEmployees = employees.filter(employee => filters.includes(employee.function));
         
         if (searchValue) {
             filteredEmployees = searchFilter(filteredEmployees, searchValue);
