@@ -11,13 +11,10 @@ const Employees = ({ searchValue, filters }) => {
     React.useEffect(() => {
         if (!employees || !employees.length) return;
         
-        let filteredEmployees = employees.filter(employee => filters.includes(employee.function));
-        
-        if (searchValue) {
-            filteredEmployees = searchFilter(filteredEmployees, searchValue);
-        }
-        
-        setFilteredEmployees(filteredEmployees);
+        setFilteredEmployees(employees
+            .filter(employee => filters.includes(employee.function))
+            .filter(searchFilter(searchValue))
+        );
 
     }, [searchValue, filters, employees]);
 

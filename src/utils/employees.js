@@ -3,12 +3,10 @@ const doesInclude = (a, b) => {
     return a.toUpperCase().includes(b.toUpperCase());
 }
 
-export const searchFilter = (employees, searchValue) => {
-    if (!employees || !searchValue) return false;
+export const searchFilter = (searchValue) => (employee) => {
+    if (!searchValue) return true;
 
-    return employees.filter((employee) => (
-        doesInclude(employee.first_name, searchValue)
+    return doesInclude(employee.first_name, searchValue)
         || doesInclude(employee.last_name, searchValue)
         || doesInclude(employee.function, searchValue)
-    ));
-}
+};
