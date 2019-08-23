@@ -1,19 +1,16 @@
 import React from 'react';
-import { getEmployeeFunctions } from '../utils/employees';
 import { Root, Fieldset } from '../styles/Filters';
+import useFetch from '../hooks/useFetch';
 
 const Filters = ({onFilter, ...props}) => {
-    const [employeeFunctions, setEmployeeFunctions] = React.useState([]);
+    const employeeFunctions = useFetch('http://localhost:5000/api/functions');
     const [filters, setFilters] = React.useState([]);
 
     React.useEffect(() => {
-        getEmployeeFunctions().then((employeeFunctions) => {
-            setEmployeeFunctions(employeeFunctions);
-            const filters = employeeFunctions.reduce((arr, f) => [...arr, f.id], []);
-            setFilters(filters);
-            onFilter(filters);
-        });
-    }, [onFilter]);
+        const filters = employeeFunctions.reduce((arr, f) => [...arr, f.id], []);
+        setFilters(filters);
+        onFilter(filters);
+    }, [employeeFunctions, onFilter]);
 
     const handleChange = (e) => {
         const newFilters = e.currentTarget.checked

@@ -1,17 +1,16 @@
 import React from 'react';
 import Employee from './Employee';
-import { getEmployees, searchFilter } from '../utils/employees';
+import { searchFilter } from '../utils/employees';
 import { List, ListItem } from '../styles/Employees';
+import useFetch from '../hooks/useFetch';
 
 const Employees = ({ searchValue, filters }) => {
-    const [employees, setEmployees] = React.useState([]);
     const [filteredEmployees, setFilteredEmployees] = React.useState();
+    const employees = useFetch('http://localhost:5000/api/employees');
 
     React.useEffect(() => {
-        getEmployees().then(setEmployees);
-    }, []);
-
-    React.useEffect(() => {
+        if (!employees || !employees.length) return;
+        
         let filteredEmployees = employees.filter(employee => filters.includes(employee.function));
         
         if (searchValue) {
