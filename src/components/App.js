@@ -1,19 +1,39 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Search from './Search';
 import Filters from './Filters';
 import Employees from './Employees';
 
-function App() {
-  const [searchValue, setSearchValue] = React.useState('');
-  const [filters, setFilters] = React.useState([]);
+class App extends Component {
+  
+  state = {
+    searchValue: '',
+    filters: [],
+  }
 
-  return (
-    <div>
-      <Search onSearch={setSearchValue} />
-      <Filters onFilter={setFilters} />
-      <Employees searchValue={searchValue} filters={filters} />
-    </div>
-  );
+  setSearchValue = (searchValue) => {
+    this.setState({
+      searchValue
+    });
+  }
+
+  setFilters = (filters) => {
+    this.setState({
+      filters
+    })
+  };
+
+  render() {
+    const { searchValue, filters } = this.state;
+    
+    return (
+      <div>
+        <Search onSearch={this.setSearchValue} />
+        <Filters onFilter={this.setFilters} />
+        <Employees searchValue={searchValue} filters={filters} />
+      </div>
+    );
+  }
+
 }
 
 export default App;
