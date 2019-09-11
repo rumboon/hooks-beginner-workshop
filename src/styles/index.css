@@ -10,3 +10,19 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
+.container {
+    padding: 1rem 0;
+}
+
+.container.darkmode {
+    background-color: #3a3a3a;
+    color: #fff;
+}
+
+.container.darkmode ul li {
+    background-color: #6d6a5f;
+}
+.container.darkmode ul li:nth-child(odd) {
+    background-color: #504e46;
+}
